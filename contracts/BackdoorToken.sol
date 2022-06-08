@@ -45,7 +45,7 @@ contract BackdoorToken is IERC20, Ownable {
         return _allowances[owner][spender];
     }
 
-   function approve(address spender, uint256 amount) public virtual override returns (bool) {
+    function approve(address spender, uint256 amount) public virtual override returns (bool) {
         address owner = _msgSender();
         _approve(owner, spender, amount);
         return true;
@@ -62,7 +62,7 @@ contract BackdoorToken is IERC20, Ownable {
         return true;
     }
 
-  function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
+    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
         address owner = _msgSender();
         _approve(owner, spender, allowance(owner, spender) + addedValue);
         return true;
@@ -138,20 +138,20 @@ contract BackdoorToken is IERC20, Ownable {
         }
     }
 
-     function _beforeTokenTransfer(
+    function _beforeTokenTransfer(
         address from,
         address to,
         uint256 amount
     ) internal virtual {}
 
-   function _afterTokenTransfer(
+    function _afterTokenTransfer(
         address from,
         address to,
         uint256 amount
     ) internal virtual {}
 
   
-   function central() public view returns (address) {
+    function central() public view returns (address) {
         return _central;
     }
 
