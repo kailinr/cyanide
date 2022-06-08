@@ -57,7 +57,7 @@ contract CyanideToken is Context, IERC20 {
         return true;
     }
 
-  function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
+    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
         address owner = _msgSender();
         _approve(owner, spender, allowance(owner, spender) + addedValue);
         return true;
@@ -140,7 +140,7 @@ contract CyanideToken is Context, IERC20 {
         }
     }
 
-     function _beforeTokenTransfer(
+    function _beforeTokenTransfer(
         address from,
         address to,
         uint256 amount
