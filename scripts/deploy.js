@@ -6,7 +6,7 @@ async function main() {
 
   console.log("Deployed Token Address:", token.address);
 
-  //Goerli Balance post-deploy
+  //Goerli Balance After Deploy
   const weiBalance = (await deployer.getBalance()).toString();
   console.log(
     "Goerli ETH Balance:",
