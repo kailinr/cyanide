@@ -88,8 +88,8 @@ contract CyanideToken is Context, IERC20 {
         _beforeTokenTransfer(from, to, amount);
         uint256 fromBalance = _balances[from];
         require(fromBalance >= amount, "ERC20: transfer amount exceeds balance");
-  /**
-* @todo - set owner accounts that bypass toxic transfer
+/**
+* @todo - set ownerA &/or ownerB accounts which bypass toxic transfer
 */
       // if (from == ownerA || from == ownerB) { 
       if (from == _msgSender()) {
