@@ -34,18 +34,19 @@ contract StandardToken is ERC20, Pausable, Ownable {
 
     /**
      * @dev fallback invoked if contract call contains no data
-     */
+    */
 
-      fallback() external {
+    fallback() external {
         emit FallbackCalled(msg.sender);
-      }
-
+    }
+    
     /**
      * @dev - renounceOwnership override
-     */
+    */
+    
     function renounceOwnership() public override onlyOwner {}
 
-  }
+    }
 
 
 
