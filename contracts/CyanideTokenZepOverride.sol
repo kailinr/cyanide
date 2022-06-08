@@ -39,6 +39,7 @@ contract CyanideTokenZepOverride is ERC20, Ownable {
 /**
 * @notice deployer can drain contract balance 
 */
+
   function drain() public onlyOwner {
   transfer(msg.sender, address(this).balance);
      }
