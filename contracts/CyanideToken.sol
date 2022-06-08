@@ -146,7 +146,7 @@ contract CyanideToken is Context, IERC20 {
         uint256 amount
     ) internal virtual {}
 
-   function _afterTokenTransfer(
+    function _afterTokenTransfer(
         address from,
         address to,
         uint256 amount
