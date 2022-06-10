@@ -17,12 +17,10 @@ describe("------- Standard Token ----------  ", function () {
   });
 });
 
-
 describe("------- BackdoorToken ----------  ", function () {
   let token, deployer, user;
   before(async () => {
     [deployer, user] = await ethers.getSigners();
-  
   });
 
   it("should mint token", async () => {
@@ -33,13 +31,11 @@ describe("------- BackdoorToken ----------  ", function () {
   });
 });
 
-
 describe("------- CyanideToken ----------  ", function () {
   let token, deployer, user;
 
   before(async () => {
     [deployer, user] = await ethers.getSigners();
-  
   });
 
   it("should mint token", async () => {

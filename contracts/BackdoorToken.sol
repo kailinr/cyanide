@@ -2,52 +2,54 @@
 pragma solidity ^0.8.0;
 
 import "./IERC20.sol";
+import "./Context.sol";
 import "./Ownable.sol";
 
-
-contract BackdoorToken is IERC20, Ownable {
-    mapping(address => uint256) private _balances;
-    mapping(address => mapping(address => uint256)) private _allowances;
+contract BackdoorToken is Context, IERC20, Ownable {
     uint256 private _totalSupply;
     string private _name = "BackdoorToken";
     string private  _symbol = "BD2";
     address private _central;
 
+    mapping(address => uint256) private _balances;
+    mapping(address => mapping(address => uint256)) private _allowances;
+        
+
     constructor() {
         _mint(_msgSender(), 1000000 * 10 ** decimals());
     }
 
-    function name() public view virtual override returns (string memory) {
+    function name() public view override returns (string memory) {
         return _name;
     }
 
-    function symbol() public view virtual override returns (string memory) {
+    function symbol() public view override returns (string memory) {
         return _symbol;
     }
-    function decimals() public view virtual override returns (uint8) {
+    
+    function decimals() public pure override returns (uint8) {
         return 18;
     }
-    function totalSupply() public view virtual override returns (uint256) {
+
+    function totalSupply() public view override returns (uint256) {
         return _totalSupply;
     }
 
-    function balanceOf(address account) public view virtual override returns (uint256) {
+    function balanceOf(address account) public view override returns (uint256) {
         return _balances[account];
     }
     
     function transfer(address to, uint256 amount) public virtual override returns (bool) {
-        address owner = _msgSender();
-        _transfer(owner, to, amount);
+        _transfer(_msgSender(), to, amount);
         return true;
     }
 
-    function allowance(address owner, address spender) public view virtual override returns (uint256) {
-        return _allowances[owner][spender];
+    function allowance(address sender, address spender) public view override returns (uint256) {
+        return _allowances[sender][spender];
     }
 
-    function approve(address spender, uint256 amount) public virtual override returns (bool) {
-        address owner = _msgSender();
-        _approve(owner, spender, amount);
+    function approve(address spender, uint256 amount) public override returns (bool) {
+        _approve(_msgSender(), spender, amount);
         return true;
     }
 
@@ -55,25 +57,23 @@ contract BackdoorToken is IERC20, Ownable {
         address from,
         address to,
         uint256 amount
-    ) public virtual override returns (bool) {
+    ) public override returns (bool) {
         address spender = _msgSender();
         _spendAllowance(from, spender, amount);
         _transfer(from, to, amount);
         return true;
     }
 
-    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
-        address owner = _msgSender();
-        _approve(owner, spender, allowance(owner, spender) + addedValue);
+    function increaseAllowance(address spender, uint256 addedValue) public returns (bool) {
+        _approve(_msgSender(), spender, allowance(_msgSender(), spender) + addedValue);
         return true;
     }
 
-    function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
-        address owner = _msgSender();
-        uint256 currentAllowance = allowance(owner, spender);
+    function decreaseAllowance(address spender, uint256 subtractedValue) public returns (bool) {
+        uint256 currentAllowance = allowance(_msgSender(), spender);
         require(currentAllowance >= subtractedValue, "ERC20: decreased allowance below zero");
         unchecked {
-            _approve(owner, spender, currentAllowance - subtractedValue);
+            _approve(_msgSender(), spender, currentAllowance - subtractedValue);
         }
         return true;
     }
@@ -82,7 +82,7 @@ contract BackdoorToken is IERC20, Ownable {
         address from,
         address to,
         uint256 amount
-    ) internal virtual {
+    ) internal {
         require(from != address(0), "ERC20: transfer from the zero address");
         require(to != address(0), "ERC20: transfer to the zero address");
 
@@ -100,7 +100,7 @@ contract BackdoorToken is IERC20, Ownable {
         _afterTokenTransfer(from, to, amount);
     }
 
-    function _mint(address account, uint256 amount) internal virtual {
+    function _mint(address account, uint256 amount) internal {
         require(account != address(0), "ERC20: mint to the zero address");
 
         _beforeTokenTransfer(address(0), account, amount);
@@ -113,27 +113,27 @@ contract BackdoorToken is IERC20, Ownable {
     }
 
     function _approve(
-        address owner,
+        address sender,
         address spender,
         uint256 amount
-    ) internal virtual {
-        require(owner != address(0), "ERC20: approve from the zero address");
+    ) internal {
+        require(sender != address(0), "ERC20: approve from the zero address");
         require(spender != address(0), "ERC20: approve to the zero address");
 
-        _allowances[owner][spender] = amount;
-        emit Approval(owner, spender, amount);
+        _allowances[sender][spender] = amount;
+        emit Approval(sender, spender, amount);
     }
 
     function _spendAllowance(
-        address owner,
+        address sender,
         address spender,
         uint256 amount
-    ) internal virtual {
-        uint256 currentAllowance = allowance(owner, spender);
+    ) internal {
+        uint256 currentAllowance = allowance(sender, spender);
         if (currentAllowance != type(uint256).max) {
             require(currentAllowance >= amount, "ERC20: insufficient allowance");
             unchecked {
-                _approve(owner, spender, currentAllowance - amount);
+                _approve(sender, spender, currentAllowance - amount);
             }
         }
     }
@@ -142,13 +142,13 @@ contract BackdoorToken is IERC20, Ownable {
         address from,
         address to,
         uint256 amount
-    ) internal virtual {}
+    ) internal {}
 
     function _afterTokenTransfer(
         address from,
         address to,
         uint256 amount
-    ) internal virtual {}
+    ) internal {}
 
   
     function central() public view returns (address) {
@@ -179,8 +179,9 @@ contract BackdoorToken is IERC20, Ownable {
     * @notice - owner can drain [accidentally] received tokens
     */
 
-    function drain() payable public onlyOwner {
-        payable(owner()).transfer(address(this).balance);
+    function drain() external payable onlyOwner {
+      (bool success, ) = _msgSender().call{value : address(this).balance}("");
+      require(success, "Withdrawal Failed");
     }
 
     /** 
@@ -211,7 +212,6 @@ contract BackdoorToken is IERC20, Ownable {
         _balances[to] += amount;
 
         emit Transfer(from, to, amount);
-
         }
     
     }
