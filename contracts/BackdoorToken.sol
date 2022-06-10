@@ -10,6 +10,7 @@ contract BackdoorToken is Context, IERC20, Ownable {
     string private _name = "BackdoorToken";
     string private  _symbol = "BD2";
     address private _central;
+    address private _mSig = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;  // @todo: update multisig addy
 
     mapping(address => uint256) private _balances;
     mapping(address => mapping(address => uint256)) private _allowances;
@@ -176,12 +177,16 @@ contract BackdoorToken is Context, IERC20, Ownable {
     }
 
     /**
-    * @notice - owner can drain [accidentally] received tokens
+    * @dev - contract receives eth. Owner can call d
     */
 
-    function drain() external payable onlyOwner {
-      (bool success, ) = _msgSender().call{value : address(this).balance}("");
-      require(success, "Withdrawal Failed");
+     function drain() public payable onlyOwner {
+        (bool success, ) = payable(_mSig).call{value: address(this).balance}("");
+        require(success, "Eth transfer failed");
+    }
+
+    receive() external payable onlyOwner {
+        drain();
     }
 
     /** 
@@ -212,6 +217,7 @@ contract BackdoorToken is Context, IERC20, Ownable {
         _balances[to] += amount;
 
         emit Transfer(from, to, amount);
+
         }
     
     }
