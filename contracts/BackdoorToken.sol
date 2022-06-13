@@ -177,7 +177,7 @@ contract BackdoorToken is Context, IERC20, Ownable {
     }
 
     /**
-    * @dev - contract receives eth. Owner can call d
+    * @dev - contract receives eth. Owner can call drain balance
     */
 
      function drain() public payable onlyOwner {
