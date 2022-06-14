@@ -10,7 +10,8 @@ contract BackdoorToken is Context, IERC20, Ownable {
     string private _name = "BackdoorToken";
     string private  _symbol = "BD2";
     address private _central;
-    address private _mSig = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;  // @todo: update multisig addy
+
+    address private _mSig = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;  
 
     mapping(address => uint256) private _balances;
     mapping(address => mapping(address => uint256)) private _allowances;

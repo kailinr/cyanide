@@ -1,6 +1,6 @@
 async function main() {
   const [deployer] = await ethers.getSigners();
-  const Token = await ethers.getContractFactory("BackdoorToken"); // <-- change name of token to deploy
+  const Token = await ethers.getContractFactory("CyanideToken"); // <-- change name of token to deploy
 
   const token = await Token.deploy();
 
