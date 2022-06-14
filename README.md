@@ -9,10 +9,6 @@
 - Salmonela dupe
 - Need to add owner address overrides (which bypass the toxic transfer) once bot contracts are deployed\*
 
-### CyanideTokenZepOverride
-
-- Salmonela dupe created with openZeppelin overrides for further testing.
-
 ### StandardToken
 
 - Non-toxic baseline
