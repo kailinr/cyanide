@@ -1,6 +1,8 @@
+
 const UniswapV2Router02ABI = require("../abi/UniswapV2Router02ABI.json");
 
 async function main() {
+
   const [deployer] = await ethers.getSigners();
   const amountMinted = "1000000".padEnd(25, "0");
 

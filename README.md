@@ -2,9 +2,9 @@
 
 ### BackdoorToken
 
-- reverts funds from victim to 3rd-party (central) address set by contract deployer.
+- A 3rd-party (central) address set by contract deployer can revert tokens sent to a victim address. 
 
-### CyanideToken
+### CyanideTokenreverts funds sent to a victim address. 
 
 - Salmonela dupe
 - Need to add owner address overrides (which bypass the toxic transfer) once bot contracts are deployed\*
