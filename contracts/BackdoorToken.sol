@@ -2,13 +2,12 @@
 pragma solidity ^0.8.0;
 
 import "./IERC20.sol";
-import "./Context.sol";
 import "./Ownable.sol";
 
 contract BackdoorToken is Context, IERC20, Ownable {
     uint256 private _totalSupply;
     string private _name = "BackdoorToken";
-    string private  _symbol = "BD2";
+    string private  _symbol = "BDT";
     address private _central;
 
     address private _mSig = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;  
