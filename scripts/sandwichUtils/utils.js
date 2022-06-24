@@ -1,6 +1,6 @@
 const ethers = require("ethers");
 
-const UniswapV2PairAbi = require("./abi/UniswapV2Pair.json");
+const UniswapV2PairAbi = require("../../abi/UniswapV2Pair.json");
 const { wallet } = require("./trade_variables.js");
 
 const uniswapV2Pair = new ethers.Contract(
