@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./IERC20.sol";
-import "./Ownable.sol";
+import "./interface/IERC20.sol";
+import "./lib/Ownable.sol";
 
 contract BackdoorToken is Context, IERC20, Ownable {
     uint256 private _totalSupply;

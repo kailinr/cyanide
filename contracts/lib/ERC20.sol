@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "./Context.sol";
-import "./IERC20.sol";
+import "../interface/IERC20.sol";
 
 contract ERC20 is Context, IERC20 {
     mapping(address => uint256) private _balances;

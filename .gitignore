@@ -7,3 +7,6 @@ typechain
 #Hardhat files
 cache
 node_modules
+
+
+.DS_Store
