@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@openzeppelin/contracts": "^4.6.0",
+    "@uniswap/sdk": "^3.0.3",
     "dotenv": "^16.0.1",
     "prettier": "^2.6.2"
   },
