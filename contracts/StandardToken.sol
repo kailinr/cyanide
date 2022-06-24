@@ -33,7 +33,7 @@ contract StandardToken is ERC20, Pausable, Ownable {
     }
 
     /**
-     * @dev fallback invoked if contract call contains no data
+     * @dev fallback invoked if call contains no data
     */
 
     fallback() external {
