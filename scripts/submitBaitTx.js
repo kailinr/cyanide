@@ -12,7 +12,7 @@ async function sendTransaction() {
   const feeData = await provider.getFeeData();
   const { maxFeePerGas, maxPriorityFeePerGas } = feeData;
 
-//Gas Math
+//Pending Tx Gas Math
   const maxFeeCalc = BigNumber.from(maxFeePerGas).mul(2).div(10);
   const maxPriPerCalc = BigNumber.from(maxPriorityFeePerGas).mul(2).div(10);
 
