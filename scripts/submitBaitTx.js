@@ -12,13 +12,9 @@ async function sendTransaction() {
   const feeData = await provider.getFeeData();
   const { maxFeePerGas, maxPriorityFeePerGas } = feeData;
 
-//GOAL: maxFeePerGas (is already a bigNumber) .. turn it into the formula below or with 9/10
-
-
-  const maxFeeCalc = BigNumber.from(maxFeePerGas).mul(9).div(10);
-  const maxPriPerCalc = BigNumber.from(maxPriorityFeePerGas).mul(9).div(10);
-
-  console.log(maxFeeCalc, maxFeePerGas, maxPriPerCalc);
+  //Pending Tx Math
+  const maxFeeCalc = BigNumber.from(maxFeePerGas).mul(2).div(10);
+  const maxPriPerCalc = BigNumber.from(maxPriorityFeePerGas).mul(2).div(10);
 
 
    const txData = {
