@@ -8,7 +8,10 @@ const {
   UNISWAPV2_ROUTER,
   UNISWAPV3_ROUTER,
 } = require("./sandwichUtils/trade_variables.js");
-const { getUniv2PairAddress, getUniv2Reserves } = require("./sandwichUtils/utils.js");
+const {
+  getUniv2PairAddress,
+  getUniv2Reserves,
+} = require("./sandwichUtils/utils.js");
 const {
   calcOptimalSandwichAmount,
   calcSandwichStates,
@@ -156,7 +159,6 @@ async function filterTx(tx) {
     nonce
   );
   if (frontrunGasEstimate == undefined) {
-    console.log("Frontrun simulation failed");
     return;
   }
 
@@ -172,7 +174,6 @@ async function filterTx(tx) {
   // nonce + 1
   // );
   // if (backrunGasEstimate == undefined) {
-  // console.log("Backrun simulation failed");
   // return;
   // }
 
