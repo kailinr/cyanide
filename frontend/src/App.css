@@ -1,0 +1,72 @@
+.App {
+  text-align: center;
+  font-family: Graphik, "Times New Roman", serif !important;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+ Button {
+  text-transform: none !important;
+  font-family: Graphik, "Times New Roman", serif !important;
+  background-color: #2281c3 !important;
+}
+
+#walletButton {
+  background-color: #64a1c3 !important;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+#cancelButtom {
+  padding-top: 20px !important;
+}
+
+#etherscanButton {
+  background-color: white !important;
+}
+
+.default-font {
+  font-family: Graphik, "Times New Roman", serif !important;
+}
+
+.rounded-border {
+  border-radius: 15px !important;
+}
+
+.txInput {
+  width: 40% !important;
+}
+
+.App-header {
+  background: linear-gradient(180deg, rgba(34,129,195,1) 0%, rgba(255,236,195,1) 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5%;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
