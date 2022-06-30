@@ -28,7 +28,7 @@ class App extends Component {
   // Chain ID 5
   chainId = ChainId.GÖRLI;
   // Cyanide (CYN) token address
-  cynTokenAddress = '0xe895507c3fb0d156d633b746298349d158f66a85';
+  cynTokenAddress = '0x50940de104DE340e1dEABF60f9c1750f78508785';
   // Uniswap ROUTER address (where we will send our trade)
   UNISWAP_ROUTER_ADDRESS = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
   // Router ABI
