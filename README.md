@@ -20,7 +20,7 @@
 
 - \*First, enter change token name in deploy.js
 
-`npx hardhat run scripts/deploy.js --network goerli`
+`npx hardhat run scripts/deployers/deployCyanideToken.js --network goerli`
 
 ### Test
 
@@ -41,7 +41,7 @@
 
 
 
-### On Gas (mostly for me)
+### Notes on gas
 
 MaxFeePerGas = Base fee + maxPriorityFee.
 
@@ -50,13 +50,16 @@ MaxFeePerGas = Base fee + maxPriorityFee.
 - maxPriorityFee = tip miners. Minimum tip for your tx to be mined = 1 gwei, or .000000001 eth.
 - For non-Flashbots miners, MaxPriorityFee is the tip to miners. Standard Ethereum Miners receive (per block): maxFeePerGas - base fee.
 
-### Gas Script
+
+
+
+### Gas Script (built in to front-end)
 
 - new packages (@ethereumjs/tx and axios) installed - need to `npm i`
 - Calculates gas fees for current block.
 - Calculates last 10 blocks baseGasFees, formats to dec, reduces, gets average
 
-npx hardhat run scripts/gas.js
+
 
 ### EIP1559 Tx
 
@@ -79,7 +82,7 @@ Dan's EIP1559 talk: https://www.chainshot.com/md/eip1559-9-14-21
 
 
 # Sandwich Bot Demo
-> Monitors mempool for Uniswap V2 and V3(Multicall) buy transactions, performs sandwich on profitable transactions using Flashbots.
+> Monitors mempool for Uniswap V2 buy transactions, performs sandwich on profitable transactions.
 
 ## Setup
 - Add PRIVATE_KEY, GOERLI_WSS_URL variables in .env file
@@ -88,10 +91,10 @@ Dan's EIP1559 talk: https://www.chainshot.com/md/eip1559-9-14-21
 ## Deploy Contracts
 - Add ETHERSCAN_API_KEY in .env file
 - ```
-   $ npx hardhat run scripts/deploy.js --network goerli
+   $ npx hardhat run scripts/deployers/deploySandwichBot.js --network goerli
    $ npx hardhat verify --network goerli <Contract address> <WETH address> 
    ```
 - Send ETH to sandwich contract to wrap to WETH
 
 ## Usage
-- `$ node scripts/BeginSandwiching.js`
+- `$ npx hardhat run scripts/sandV2.js --network goerli`
