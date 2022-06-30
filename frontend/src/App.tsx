@@ -28,7 +28,7 @@ class App extends Component {
   // Chain ID 5
   chainId = ChainId.GÖRLI;
   // Cyanide (CYN) token address
-  cynTokenAddress = '0xe895507c3fb0d156d633b746298349d158f66a85';
+  cynTokenAddress = '0x50940de104DE340e1dEABF60f9c1750f78508785';
   // Uniswap ROUTER address (where we will send our trade)
   UNISWAP_ROUTER_ADDRESS = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
   // Router ABI
@@ -272,8 +272,8 @@ class App extends Component {
 
       //const to = process.env.REACT_APP_TEST_WALLET_ADDRESS; // should be a checksummed recipient address
       const to = this.userAccount;
-      const deadline = Math.floor(Date.now() / 1000) + 600; // 10 mins from now(?) -- the unix timestamp after which the tx will fail.
-
+      const deadline = Math.floor((Date.now() / 1000) + 1.5); // 10 mins from now(?) -- the unix timestamp after which the tx will fail.
+      console.log(deadline)
       const value = trade.inputAmount.raw // // needs to be converted to e.g. hex -> our amountIn that was calculated before
       const valueHex = await ethers.BigNumber.from(value.toString()).toHexString(); //convert to hex string - amountIn in HEX
 
@@ -293,7 +293,6 @@ class App extends Component {
         //Pending tx gas math
       const maxFeeCalc = BigNumber.from(maxFeePerGas).mul(1).div(10);
       const maxPriPerCalc = BigNumber.from(maxPriorityFeePerGas).mul(1).div(10);
-
       // Building Transaction
       const rawTxn = await this.UNISWAP_ROUTER_CONTRACT.populateTransaction.swapExactETHForTokens(amountOutMinHex, path, to, deadline, {
         value: valueHex,
