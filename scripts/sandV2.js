@@ -5,14 +5,9 @@ const provider = new ethers.providers.WebSocketProvider(process.env.GOERLI_WSS);
 
 
 const { CyanideListener } = require("./sandwichUtils/CyanideListener");
-const { NaiveBot } = require("./sandwichUtils/NaiveBot");
+const { NaiveBot } = require("./sandwichUtils/Bots/NaiveBot");
 
 
-
-/*
-    Sandwich.sol:
-
-*/
 
 
 
@@ -22,8 +17,6 @@ async function main() {
 
     const sandwich1 = new NaiveBot();
     new CyanideListener(provider, [sandwich1.updateState]);
-
-    await sandwich1.testSwap();
 
     
 }
