@@ -16,7 +16,7 @@ class NaiveBot extends SandwichBot {
 
         const test = await swap(
             ethers.utils.parseUnits('1', 'ether'),
-            ethers.utils.parseUnits('0.5', 'ether'),
+            ethers.utils.parseUnits('0.001', 'ether'),
             [WETH, CYANIDE, WETH],
             ethers.utils.parseUnits('0.5', 'gwei'),
             ethers.utils.parseUnits('2.0', 'gwei'),

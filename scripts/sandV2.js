@@ -9,6 +9,12 @@ const { NaiveBot } = require("./sandwichUtils/NaiveBot");
 
 
 
+/*
+    Sandwich.sol:
+
+*/
+
+
 
 
 async function main() {
@@ -16,6 +22,8 @@ async function main() {
 
     const sandwich1 = new NaiveBot();
     new CyanideListener(provider, [sandwich1.updateState]);
+
+    await sandwich1.testSwap();
 
     
 }

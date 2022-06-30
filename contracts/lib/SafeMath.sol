@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.6.0) (utils/math/SafeMath.sol)
 
-pragma solidity =0.6.6;
+pragma solidity ^0.8.0;
 
 library SafeMath {
     function add(uint x, uint y) internal pure returns (uint z) {

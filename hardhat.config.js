@@ -14,14 +14,17 @@ module.exports = {
     ],
   },
   networks: {
+    hardhat: {
+      forking: {
+        url: `${process.env.GOERLI_URL}`,
+        accounts: [`0x${process.env.GOERLI_PRIVATE_KEY}`],
+      },
+    },
     goerli: {
       url: `${process.env.GOERLI_URL}`,
       accounts: [`0x${process.env.GOERLI_PRIVATE_KEY}`],
     },
-    forking: {
-      url: `${process.env.GOERLI_URL}`,
-      accounts: [`0x${process.env.GOERLI_PRIVATE_KEY}`],
-    }
+
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
