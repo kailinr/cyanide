@@ -358,9 +358,10 @@ class App extends Component {
       }
 
     } catch (e) {
-      alert('Please Connect Wallet');
-      console.log('reached here :(');
-      console.error(e)
+      this.txIsPending = false;
+      this.forceUpdate();
+
+      //console.error(e)
     }
   }
 }
