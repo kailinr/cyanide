@@ -1,4 +1,4 @@
-const UniswapV2Router02ABI = require("../abi/UniswapV2Router02ABI.json");
+const UniswapV2Router02ABI = require("../../abi/UniswapV2Router02ABI.json");
 
 async function main() {
   const [deployer] = await ethers.getSigners();
